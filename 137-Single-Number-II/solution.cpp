@@ -1,6 +1,20 @@
 class Solution {
 public:
-    // bit manipulation, a more delicate way
+    // bit manipulation, without extra memory
+    int singleNumber(vector<int> nums){
+        int ans = 0;
+        for(int i = 0; i < 32; i ++){
+            int bit = 1 << i;           // location of specific bit
+            int count = 0;              // bit count
+            for(int j = 0; j < nums.size(); j ++)
+                if(bit & nums[j]) count ++;
+            if(count % 3) ans += bit;
+        }
+        return ans;
+    }
+
+    // bit manipulation, a more delicate way:19ms
+    /*
     int singleNumber(vector<int> nums){
         int bit[32];
         for(int i = 0; i < 32; i ++)    // initialize to record each bit's status
@@ -19,7 +33,7 @@ public:
             ans += (bit[i] % 3) * temp;
         }
         return ans;
-    }
+    }*/
 
     // bit-manipulation: 23ms
     /*
