@@ -22,6 +22,7 @@ public:
     }
 
     // bit-manipulation: 23ms
+    /*
     int singleNumber(vector<int>& nums) {
         unordered_map<int, int> flag; // whether an integer showed up before
         int ans = 0;
@@ -48,5 +49,5 @@ public:
             }
         }
         return ans;
-    }
+    }*/
 };
