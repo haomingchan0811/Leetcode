@@ -8,6 +8,7 @@
  */
 class Solution {
 public:
+    // recursive: 9ms
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
         if(l1 == NULL) return l2;   // boundary conditions
         if(l2 == NULL) return l1;
