@@ -26,7 +26,7 @@ public:
             freq[nums[i]] ++;
         }
         // the frequency of a number can not exceec nums.size()
-        valarray<vector<int> > buckets(nums.size() + 1);    // length of valarray = nums.size()
+        vector<vector<int> > buckets(nums.size() + 1);    // number of vectors = nums.size()
         for(auto num: freq){
             int index = num.second;
             buckets[index].push_back(num.first);
