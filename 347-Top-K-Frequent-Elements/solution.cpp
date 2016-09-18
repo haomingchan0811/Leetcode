@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // priority_queue: 33ms
+    /*
     vector<int> topKFrequent(vector<int>& nums, int k) {
         vector<int> ans;
         unordered_map<int, int> freq;
@@ -12,6 +14,32 @@ public:
         for(int i = 0; i < k; i++){
             ans.push_back(pq.top().second);
             pq.pop();
+        }
+        return ans;
+    }*/
+
+    // bucket sort:
+    vector<int> topKFrequent(vector<int>& nums, int k){
+        vector<int> ans;
+        unordered_map<int, int> freq;
+        for(int i = 0; i < nums.size(); i ++){
+            freq[nums[i]] ++;
+        }
+        // the frequency of a number can not exceec nums.size()
+        valarray<vector<int> > buckets(nums.size() + 1);    // length of valarray = nums.size()
+        for(auto num: freq){
+            int index = num.second;
+            buckets[index].push_back(num.first);
+        }
+        int count = 0;
+        for(int i = nums.size(); i >= 0; i --){
+            for(auto b: buckets[i]){
+                if(count < k){
+                    ans.push_back(b);
+                    count ++;
+                }
+                else break;
+            }
         }
         return ans;
     }
