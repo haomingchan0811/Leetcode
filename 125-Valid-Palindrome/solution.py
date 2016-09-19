@@ -4,9 +4,9 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        test = []
+        test = ''
         for i in s:
             if i.isalnum():
-                test.append(i.lower())
-        return str(test) == str(test[::-1])
+                test = test + i.lower()
+        return test == test[::-1]
         
