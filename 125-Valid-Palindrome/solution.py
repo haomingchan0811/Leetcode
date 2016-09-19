@@ -7,6 +7,6 @@ class Solution(object):
         test = ''
         for i in s:
             if i.isalnum():
-                test += i.lowercase()
+                test += i.lower()
         return test == test[::-1]
         
