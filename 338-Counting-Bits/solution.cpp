@@ -10,7 +10,7 @@ public:
         return ans;
     }*/
 
-    // dynamic programming, a more easy-understanding way:
+    // dynamic programming, a more easy-understanding way: 63ms
     vector<int> countBits(int num) {
         // initialize num = 0,1,2
         vector<int> ans(1, 0);
