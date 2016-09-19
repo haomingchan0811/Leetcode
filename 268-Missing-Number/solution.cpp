@@ -10,7 +10,7 @@ public:
         return trueSum - sum;
     }*/
 
-    // bit manipulation - exclusive or:
+    // bit manipulation - exclusive or: 29ms
     int missingNumber(vector<int>& nums) {
         int ans = 0;
         int cur = 0;
