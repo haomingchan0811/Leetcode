@@ -4,8 +4,9 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        #ans = True
-        #s = s.lowercase
-        text = ''.join([char.lower() for char in s if char.isalnum()])
-        return text == text[::-1]
+        test = ''
+        for i in s:
+            if i.isalnum():
+                test += i.lowercase()
+        return test == test[::-1]
         
