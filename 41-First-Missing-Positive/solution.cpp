@@ -5,8 +5,11 @@ public:
         if(nums.empty()) return 1;
         if(nums.size() == 1) return nums[0] == 1 ? 2 : 1; // bug scenario: if vector contains a single number
         priority_queue<int> que;
+        set<int> s;
+        for(auto num: nums)
+            if(num >= 0) s.insert(num);
         bool zero = false;      // whether 0 exists or not
-        for(auto num: nums){
+        for(auto num: s){
             if(num == 0) zero = true;
             if(num >= 0) que.push(num);
         }
@@ -14,7 +17,7 @@ public:
         if(!zero) que.push(0);
 
         int cur = que.top() - 1;
-        int ans = que.pop() + 1;
+        int ans = que.top() + 1;
         que.pop();
         while(!que.empty()){
             int top = que.top();
