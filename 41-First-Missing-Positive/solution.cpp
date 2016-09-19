@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // brute-force using set ans priority_queue: 6ms
     int firstMissingPositive(vector<int>& nums) {
         // bug scenario: empty vector
         if(nums.empty()) return 1;
