@@ -17,7 +17,7 @@ public:
         if(!zero) que.push(0);
 
         int cur = que.top() - 1;
-        int ans = que.top() + 1;
+        int ans = que.top() + 1;    // bug: if input is a consecutive list of num, should return (largest num + 1)
         que.pop();
         while(!que.empty()){
             int top = que.top();
