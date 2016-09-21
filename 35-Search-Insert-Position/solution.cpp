@@ -1,5 +1,21 @@
 class Solution {
 public:
+    // optimized & concise edition: 
+    int searchInsert(vector<int>& nums, int target) {
+        int low = 0, high = nums.size() - 1;
+        while(low <= high){     // opt: don't need to check empty vector cause high = -1 < low
+            int mid = low + (high - low) >> 1; // better than (low+high)/2 cause low+high may overflow
+            if(nums[mid] < target)
+                low = mid + 1;
+            else if(nums[mid] == target) return mid;
+            else high = mid - 1;
+        }  
+        return low;
+    }
+
+    
+    // original thought: 6ms
+    /*
     int searchInsert(vector<int>& nums, int target) {
         int len = nums.size();
         if(!len) return 0;
@@ -18,6 +34,6 @@ public:
             else if(target == nums[mid]) return mid;
             else {high = mid - 1; record = mid;} // bug: missing "record = mid" and return record when loops end
         }
-        return record;
-    }
+        return record;  // if low > high, the last iteration must be high=mid-1, cause mid>=low
+    }*/
 };
