@@ -1,17 +1,26 @@
 class Solution {
 public:
-    // optimized & concise edition: 
+    // optimized & concise edition: 6ms
+    /*
     int searchInsert(vector<int>& nums, int target) {
         int low = 0, high = nums.size() - 1;
         while(low <= high){     // opt: don't need to check empty vector cause high = -1 < low
             int mid = low + (high - low)/2; // better than (low+high)/2 cause low+high may overflow
             if(nums[mid] < target)
                 low = mid + 1;
-            // else if(nums[mid] == target) return mid;
+            // else if(nums[mid] == target) return mid; // no need, trick
             else high = mid - 1;
         }  
         return low;
+    }*/
+    
+    // brute-force:
+    int searchInsert(vector<int>& nums, int target) {
+        for(int i = 0; i < nums.size(); i ++)
+            if(target <= nums[i])
+                return i;
     }
+
 
     
     // original thought: 6ms
