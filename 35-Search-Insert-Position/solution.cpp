@@ -7,7 +7,7 @@ public:
             int mid = low + (high - low)/2; // better than (low+high)/2 cause low+high may overflow
             if(nums[mid] < target)
                 low = mid + 1;
-            else if(nums[mid] == target) return mid;
+            // else if(nums[mid] == target) return mid;
             else high = mid - 1;
         }  
         return low;
