@@ -12,12 +12,11 @@ public:
         ListNode* cur = head;
         ListNode* nextNode = cur->next;
         while(cur != NULL && nextNode != NULL){
-            while(nextNode->val == cur->val){
-                nextNode = nextNode->next;
+            if(nextNode->val == cur->val){
+                cur->next = nextNode->next;
             }
-            cur->next = nextNode;
-            cur = nextNode;
-            nextNode = cur->next;
+            else cur = nextNode;
+            nextNode = nextNode->next;
         }
         return head;
     }
