@@ -17,5 +17,6 @@ public:
             prev = cur;
             cur = nextNode;
         }
+        return prev;
     }
 };
