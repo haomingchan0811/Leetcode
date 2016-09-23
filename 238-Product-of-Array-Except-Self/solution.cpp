@@ -20,7 +20,7 @@ public:
         return ret;
     }*/
     
-    // Two way multiply
+    // Two way multiply : 49ms
     vector<int> productExceptSelf(vector<int>& nums){
         int len = nums.size();
         vector<int> ret(len, 1);    // bug: ret[] can't be accessed when ret hasn't initialized
