@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // brute-force: 3ms
     vector<int> plusOne(vector<int>& digits) {
         vector<int>::iterator it = digits.end() - 1; 
         if(*it == 9){
