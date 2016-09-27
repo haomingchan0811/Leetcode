@@ -1,6 +1,6 @@
 # 66. Plus One
 
-[Original Page](https://leetcode.com/problems/plus-one/)
+[Original Page](https://leetcode.com/problems/plus-one/#)
 
 Given a non-negative number represented as an array of digits, plus one to the number.
 
