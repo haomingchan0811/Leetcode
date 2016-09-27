@@ -16,7 +16,7 @@ public:
         else return max(maxDepth(root->left), maxDepth(root->right)) + 1;
     }*/
     
-    // BFS: 
+    // BFS: 16ms
     int maxDepth(TreeNode* root){
         if(root == NULL) return 0;
         queue<TreeNode *> que;
