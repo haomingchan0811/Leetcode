@@ -19,7 +19,7 @@ public:
     // BFS: 
     int maxDepth(TreeNode* root){
         if(root == NULL) return 0;
-        queue<int> que;
+        queue<TreeNode*> que;
         que.push(root);
         int depth = 0;
         while(!que.empty()){
