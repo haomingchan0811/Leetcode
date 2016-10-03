@@ -29,9 +29,9 @@ One longest palindrome that can be built is "dccaccd", whose length is 7.
 
 <div>
 
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[Hash Table](/tag/hash-table/)</span></div>
+<span class="hidebutton" style="display: inline;">[Hash Table](/tag/hash-table/)</span></div>
 
 <div>
 
