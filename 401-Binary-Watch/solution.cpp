@@ -2,12 +2,10 @@ class Solution {
 public:
     //calculate the number of bits that says one
     int numOfBits(int num){
-        int i = 0;
         int count = 0;
-        while(i <= 5){
-            double temp = pow(2.0, i);
-            if(int(temp) & num) count += 1;
-            i++;
+        while(num){
+            count ++;
+            num = num & (num - 1);
         }
         return count;
     }
@@ -29,7 +27,7 @@ public:
             int j = num - i;
             if(j >= 0 && j < 6){
                 for(auto h: hour[i])
-                    for(auto m : min[j])
+                    for(auto m: min[j])
                         ans.push_back(h + ":" + m);
             }
         }
