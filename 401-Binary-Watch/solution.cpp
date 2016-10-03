@@ -1,6 +1,6 @@
 class Solution {
 public:
-    //calculate the number of bits that says one
+    //calculate the number of bits that has value one
     int numOfBits(int num){
         int count = 0;
         while(num){
@@ -9,7 +9,7 @@ public:
         }
         return count;
     }
-
+    // brute-force: 0ms
     vector<string> readBinaryWatch(int num) {
         vector<string> ans;
         for(int i = 0; i <= 11; i++){
