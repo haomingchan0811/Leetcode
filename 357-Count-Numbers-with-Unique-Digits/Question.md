@@ -28,6 +28,6 @@ Special thanks to [@memoryless](https://discuss.leetcode.com/user/memoryless) fo
 
 <div>
 
-<div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
+<div id="tags" class="btn btn-xs btn-warning">Hide Tags</div>
 
-<span class="hidebutton">[Dynamic Programming](/tag/dynamic-programming/) [Backtracking](/tag/backtracking/) [Math](/tag/math/)</span></div>
+<span class="hidebutton" style="display: inline;">[Dynamic Programming](/tag/dynamic-programming/) [Backtracking](/tag/backtracking/) [Math](/tag/math/)</span></div>
