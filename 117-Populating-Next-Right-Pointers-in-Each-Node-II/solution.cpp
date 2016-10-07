@@ -9,7 +9,7 @@
 
 class Solution {
 public:
-    // 19ms
+    // 29ms
     void connect(TreeLinkNode *root) {
         queue<TreeLinkNode*> que;
         if(root == NULL) return;
