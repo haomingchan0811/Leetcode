@@ -9,6 +9,7 @@
  */
 class Solution {
 public:
+    // 3ms
     vector<int> rightSideView(TreeNode* root) {
         vector<int> ret;
         if(root == NULL) return ret;
