@@ -15,7 +15,7 @@ public:
         while(true){
             int size = que.size();
             if(size == 0) return;
-            TreeLinkNode* prev == NULL;
+            TreeLinkNode* prev = NULL;
             while(size > 0){
                 TreeLinkNode* temp = que.front();
                 que.pop();
