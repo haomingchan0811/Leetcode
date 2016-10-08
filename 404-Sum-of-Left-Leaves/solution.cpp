@@ -9,7 +9,7 @@
  */
 class Solution {
 public:
-    // DFS:
+    // DFS: 3ms
     int sumOfLeftLeaves(TreeNode* root){
         if(root == NULL) return 0;
         if(root->left == NULL && root->right == NULL) return 0;
