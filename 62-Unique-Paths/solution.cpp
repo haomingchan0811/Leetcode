@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // dynamic programming: 0ms
     int uniquePaths(int m, int n) {
         int path[m][n];
         for(int i = 0; i < m; i++) path[i][0] = 1;
