@@ -24,7 +24,7 @@ Above is a 3 x 7 grid. How many possible unique paths are there?
 
 <div id="tags" class="btn btn-xs btn-warning">Show Tags</div>
 
-<span class="hidebutton">[Array](/tag/array/) [Dynamic Programming](/tag/dynamic-programming/)</span></div>
+<span class="hidebutton" style="display: none;">[Array](/tag/array/) [Dynamic Programming](/tag/dynamic-programming/)</span></div>
 
 <div>
 
