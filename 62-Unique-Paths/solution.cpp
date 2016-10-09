@@ -1,6 +1,6 @@
 class Solution {
 public:
-    // dynamic programming with O(n) space: 
+    // dynamic programming with O(n) space: 0ms
     int uniquePaths(int m, int n){
         vector<int> dp(n + 1, 0);
         dp[1] = 1;
