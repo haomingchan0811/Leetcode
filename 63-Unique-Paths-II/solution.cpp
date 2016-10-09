@@ -4,7 +4,7 @@ public:
         int row = obstacleGrid.size();
         int col = obstacleGrid[0].size();
         int dp[row][col];
-        if(obstacleGrid[0][0] == 1 || obstacleGrid[row - 1][col - 1] == 1) return 0 //bug: corner case
+        if(obstacleGrid[0][0] == 1 || obstacleGrid[row - 1][col - 1] == 1) return 0; //bug: corner case
         dp[0][0] = 1;                       // starting point
         for(int i = 1; i < row; i++){       // initialize first column
             if(obstacleGrid[i][0] == 1){
