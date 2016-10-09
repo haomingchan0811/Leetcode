@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // dynamic programming: 3ms
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
         int row = obstacleGrid.size();
         int col = obstacleGrid[0].size();
