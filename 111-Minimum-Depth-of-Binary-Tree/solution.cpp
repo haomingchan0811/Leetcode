@@ -9,10 +9,17 @@
  */
 class Solution {
 public:
-    // BFS: 
+    // DFS: 
+    // int minDepth(TreeNode* root){
+    //     if(!root) return 0;
+    //     int minDepth =
+    // }
+
+
+    // BFS: 16ms
     int minDepth(TreeNode* root) {
         if(root == NULL) return 0;
-        int minDepth = INT_MAX;
+        // int minDepth = INT_MAX;
         queue<TreeNode*> que;
         que.push(root);
         int level = 0;
@@ -22,11 +29,13 @@ public:
             while(size--){
                 TreeNode* temp = que.front();
                 que.pop();
-                if(!temp->left && !temp->right && minDepth > level) minDepth = level;
+                // if(!temp->left && !temp->right && minDepth > level) minDepth = level;
+                if(!temp->left && !temp->right && minDepth > level) return level;
                 if(temp->left) que.push(temp->left);
                 if(temp->right) que.push(temp->right);
             }
         }
-        return minDepth;
+        // return minDepth;
+        return 0;
     }
 };
