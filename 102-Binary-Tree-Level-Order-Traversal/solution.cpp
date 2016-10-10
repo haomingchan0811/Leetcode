@@ -9,6 +9,7 @@
  */
 class Solution {
 public:
+    // BFS: 9ms
     vector<vector<int>> levelOrder(TreeNode* root) {
         vector<vector<int>> traversal;
         if(root == NULL) return traversal;
