@@ -11,6 +11,7 @@ class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
         vector<vector<int>> traversal;
+        if(root == NULL) return traversal;
         queue<TreeNode*> que;
         que.push(root);
         while(!que.empty()){
