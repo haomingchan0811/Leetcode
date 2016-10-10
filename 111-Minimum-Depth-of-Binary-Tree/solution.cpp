@@ -30,7 +30,7 @@ public:
                 TreeNode* temp = que.front();
                 que.pop();
                 // if(!temp->left && !temp->right && minDepth > level) minDepth = level;
-                if(!temp->left && !temp->right && minDepth > level) return level;
+                if(!temp->left && !temp->right) return level;
                 if(temp->left) que.push(temp->left);
                 if(temp->right) que.push(temp->right);
             }
