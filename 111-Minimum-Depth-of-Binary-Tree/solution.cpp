@@ -9,7 +9,7 @@
  */
 class Solution {
 public:
-    // DFS: 
+    // DFS: 9ms
     int minDepth(TreeNode* root){
         if(!root) return 0;
         int level = 1;
@@ -18,10 +18,9 @@ public:
     
     int DFS(TreeNode* root, int minDepth, int level){
         if(!root) return INT_MAX;
-        if(!root->left && !root->right && minDepth > level) return level;
+        if(!root->left && !root->right) return level;
         return min(DFS(root->left, minDepth, level + 1), DFS(root->right, minDepth, level + 1));
     }
-
 
     // BFS: 16ms -> 9ms(replace the anotated lines with their below lines, stop when found the first leaf)
     // int minDepth(TreeNode* root) {
