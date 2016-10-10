@@ -20,6 +20,6 @@ The minimum depth is the number of nodes along the shortest path from the root n
 
 <div>
 
-<div id="similar" class="btn btn-xs btn-warning">Hide Similar Problems</div>
+<div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
 
-<span class="hidebutton" style="display: inline; opacity: 0.67183;">[(E) Binary Tree Level Order Traversal](/problems/binary-tree-level-order-traversal/) [(E) Maximum Depth of Binary Tree](/problems/maximum-depth-of-binary-tree/)</span></div>
+<span class="hidebutton">[(E) Binary Tree Level Order Traversal](/problems/binary-tree-level-order-traversal/) [(E) Maximum Depth of Binary Tree](/problems/maximum-depth-of-binary-tree/)</span></div>
