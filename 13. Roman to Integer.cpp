@@ -6,6 +6,7 @@ public:
                                           {'C', 100}, {'D', 500}, {'M', 1000}};
         int sum = 0;
         for(int i = 0; i < s.size(); i++){
+            // s[s.size()]='/x00', so value[s[s.size()]] = 0
             if(value[s[i]] < value[s[i + 1]])
                 sum -= value[s[i]];
             else sum += value[s[i]];
