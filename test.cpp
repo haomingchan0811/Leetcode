@@ -1,6 +1,7 @@
 #include <iostream>       // std::cout
 #include <queue>          // std::priority_queue
 #include <stack>
+#include <vector>
 using namespace std;
 
 int main (){

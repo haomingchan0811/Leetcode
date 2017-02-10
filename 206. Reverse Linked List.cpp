@@ -29,15 +29,16 @@ public:
 
     // iterative with more elegancy: 45.71%, ok
     ListNode* reverseList(ListNode* head) {
-        ListNode* pre = NULL;
-        ListNode* curr = head;
-        while(curr != NULL){
-            ListNode* temp = curr->next;
-            curr->next = pre;
-            pre = curr;
-            curr = temp;
+        if(!head) return NULL;
+        ListNode* prev = NULL;
+        while(head && head->next){
+            ListNode* temp = head->next;
+            head->next = prev;
+            prev = head;
+            head = temp;
         }
-        return pre; // bug: not return head
+        head->next = prev;
+        return head;
     }
 
     // (STUCK) recursive: 45.71%
