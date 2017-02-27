@@ -1,6 +1,6 @@
 class Solution {
 public:
-    // // O(N2): TLE, didn't pass the large data case
+// // O(N2): TLE, didn't pass the large data case
     // int maxProfit(vector<int>& prices) {
     //     int profit = 0;
     //     for(int i = 0; i < prices.size(); i++){
@@ -12,14 +12,14 @@ public:
     //     return profit;
     // }
 
-    // O(N): 47.21% ,ok
+    // brute force: O(N)time, O(1)space, 44.31%, ok
     int maxProfit(vector<int>& prices) {
-        if(prices.empty()) return 0; // bug: corner case
-        int profit = 0, minPrice = prices[0];
+        if(prices.empty()) return 0;
+        int minP = prices[0], ret = INT_MIN;
         for(int i = 1; i < prices.size(); i++){
-            profit = max(profit, prices[i] - minPrice);
-            minPrice = min(minPrice, prices[i]);
+            ret = max(ret, prices[i] - minP);
+            minP = min(minP, prices[i]);
         }
-        return profit;
+        return ret > 0? ret: 0;
     }
 };
