@@ -1,29 +1,23 @@
-#include <iostream>
-#include <vector>
-using namespace std;
-
 class Solution {
 public:
-    // dynamic programming with O(n) space: 0ms
-    int uniquePaths(int m, int n){
-        vector<int> dp(n + 1, 0);
-        dp[1] = 1;
-        for(int i = 1; i <= m; i++){
-            for(int j = 1; j <= n; j++)
-                dp[j] += dp[j - 1];
-        }
-        return dp[n];
+    // dp[i][j]: #ways to move here, O(mn)time & space, 51.04%, ok
+    int uniquePaths(int m, int n) {
+        if(!m || !n) return 0;
+        vector<vector<int>> ways(m, vector<int>(n, 1)); // base
+        for(int i = 1; i < m; i++)
+            for(int j = 1; j < n; j++)
+                ways[i][j] = ways[i - 1][j] + ways[i][j - 1];
+        return ways[m - 1][n - 1];
     }
 
-    // dynamic programming: 0ms
+    // optimized dp: reuse vector line by line
+    // O(mn)time, O(n)space, 51.04%, ok
     int uniquePaths(int m, int n) {
-        int path[m][n];
-        for(int i = 0; i < m; i++) path[i][0] = 1;
-        for(int i = 0; i < n; i++) path[0][i] = 1;
-        for(int i = 1; i < m; i++){
+        if(!m || !n) return 0;
+        vector<int> ways(n, 1); // base
+        for(int i = 1; i < m; i++)
             for(int j = 1; j < n; j++)
-                path[i][j] = path[i][j - 1] + path[i - 1][j];
-        }
-        return path[m - 1][n - 1];
+                ways[j] += ways[j - 1];
+        return ways[n - 1];
     }
 };
