@@ -1,35 +1,24 @@
-#include <iostream>
-#include <vector>
-using namespace std;
-
 class Solution {
 public:
-    // Binary search (9ms): utilize the monotone feature
+    // binary search: O(logN) time, O(1)space, 4.47%, ok
     int search(vector<int>& nums, int target) {
-        int high = nums.size() - 1;
-        int low = 0;
-        int mid = low + (high - low) / 2;
-        while(low <= high){
-           if(nums[mid] == target) return mid;
-           if(nums[mid] >= nums[low]){
-               if(nums[low] <= target && target < nums[mid]) high = mid;
-               else low = mid + 1;
-           }
-           else{
-               if(nums[mid] < target && target <= nums[high]) low = mid + 1;
-               else high = mid;
-           }
-           // bug: (1)forget this line, TLE (2) redefine a local variable int mid, shoudnt include "int"
-           mid = low + (high - low) / 2;
+        if(nums.empty()) return -1;
+        int head = 0, tail = nums.size() - 1;
+        while(head <= tail){   // bug: miss the "="
+            int mid = head + (tail - head) / 2;
+            if(nums[mid] == target) return mid;
+
+            if(nums[mid] >= nums[head]){   // important to check which part is monotonic
+                if(nums[head] <= target && target < nums[mid])
+                    tail = mid - 1;
+                else head = mid + 1;
+            }
+            else{
+                if(nums[mid] < target && target <= nums[tail])
+                    head = mid + 1;
+                else tail = mid - 1;
+            }
         }
         return -1;
     }
 };
-
-int main(){
-    Solution sol;
-    int t[2] = {1,3};
-    vector<int> test(t, t+2);
-    int target = 2;
-    cout << sol.search(test, target);
-}
