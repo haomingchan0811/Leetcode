@@ -32,16 +32,47 @@ public:
         return true;
     }
 
-    // DFS: 3ms
-    bool isSymmetric(TreeNode* root){
+    // // BFS: O(N)time & space, TLE for large data
+    // bool isSymmetric(TreeNode* root) {
+    //     if(!root) return true;
+    //     queue<TreeNode*> q;
+    //     q.push(root);
+    //     bool isRoot = true;
+    //     while(q.size()){
+    //         int size = q.size(), halfsize = q.size() / 2;
+    //         stack<int> s;
+    //         bool allNull = true;
+    //         while(size--){
+    //             TreeNode* temp = q.front();
+    //             q.pop();
+    //             if(temp) allNull = false;
+    //             int curr = temp? temp->val: NULL;
+    //             if(size >= halfsize) s.push(curr);
+    //             else{
+    //                 if(curr != s.top()) return false;
+    //                 s.pop();
+    //             } 
+    //             TreeNode* leftNode = temp? temp->left: NULL;
+    //             TreeNode* rightNode = temp? temp->right: NULL;
+    //             q.push(leftNode);
+    //             q.push(rightNode);
+    //         }
+    //         if(!s.empty() && !isRoot) return false;
+    //         isRoot = false;
+    //         if(allNull) break;
+    //     }
+    //     return true;
+    // }
+    
+    // recursive:  O(N)time & space, 36.07%, ok
+    bool isSymmetric(TreeNode* root) {
         if(!root) return true;
-        return DFS(root->left, root->right);
+        return helper(root->left, root->right);
     }
-
-    bool DFS(TreeNode* p, TreeNode* q){
+    
+    bool helper(TreeNode* p, TreeNode* q){
         if(!p && !q) return true;
         if(!p || !q) return false;
-        if(p->val != q->val) return false;
-        return DFS(p->left, q->right) && DFS(p->right, q->left);
+        return (p->val == q->val) && helper(p->left, q->right) && helper(p->right, q->left);
     }
 };
