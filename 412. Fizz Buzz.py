@@ -1,4 +1,6 @@
 class Solution(object):
+    
+    # Naive: O(N) time & space, 81.42%
     def fizzBuzz(self, n):
         """
         :type n: int
@@ -15,3 +17,8 @@ class Solution(object):
             else:
                 ret.append(str(i))
         return ret
+    
+    # List Comprehension: O(N) time & space, 58.17%
+    def fizzBuzz(self, n):
+        return [('Fizz' * (not i % 3) + 'Buzz' * (not i % 5)) or str(i) for i in xrange(1, n + 1)]
+
