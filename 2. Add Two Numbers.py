@@ -25,3 +25,18 @@ class Solution(object):
             ret, carry = ret.next, (a + b + carry) / 10
             l1, l2 = l1.next if l1 else None, l2.next if l2 else None
         return root
+        
+    # More elegant with dummyNode: O(max(m,n) time & space, 48.69%
+    def addTwoNumbers(self, l1, l2):
+        carry = 0
+        curr = dummy = ListNode(-1)
+        while l1 or l2 or carry:
+            a = b = 0
+            if l1: a = l1.val
+            if l2: b = l2.val 
+            curr.next = ListNode((a + b + carry) % 10)
+            curr, carry = curr.next, (a + b + carry) / 10
+            if l1: l1 = l1.next
+            if l2: l2 = l2.next
+        return dummy.next 
+    
