@@ -1,28 +1,20 @@
-#!/usr/bin/python
-
-def reverseVowels(s):
-	vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
-	answer = []			# the reverse string
-	target = []			# found vowels in s
-	for i in range(len(s)):
-#		print i, " ", s[i]
-		if s[i] in vowels:
-#			print "found ", s[i]
-			target.append(s[i])
-			answer.append('\0x')		# save the seats for the found vowels
-		else:
-			answer.append(s[i])
-	
-	reverseCount = len(target) - 1
-	for i in range(len(s)):
-		if answer[i] == '\0x':
-			answer[i] = target[reverseCount]
-			reverseCount -= 1
-		
-	print "".join(answer)
-	return "".join(answer)
-		
-		
-if __name__ == "__main__":
-	str = 'leetcode'
-	reverseVowels(str)
+class Solution(object):
+    
+    # Two pointer: O(N) time & space
+    def reverseVowels(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        p1, p2 = 0, len(s)-1
+        vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+        s = [c for c in s]
+        while p1 < p2:
+            while p1 < len(s) and s[p1] not in vowels: p1 += 1
+            while p2 >= 0 and s[p2] not in vowels: p2 -= 1
+            if 0 <= p1 < p2 < len(s): 
+                s[p1], s[p2] = s[p2], s[p1]
+                p1, p2 = p1+1, p2-1
+        return ''.join(s)
+        
+        # regular expression: 
