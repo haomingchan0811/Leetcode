@@ -1,5 +1,3 @@
-from Queue import PriorityQueue
-
 class Solution(object):
     
     # brute force: O(N) time, O(1) space
