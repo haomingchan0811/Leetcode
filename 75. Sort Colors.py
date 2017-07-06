@@ -16,14 +16,11 @@ class Solution(object):
     # Two pointer: O(N) time, O(1) space
     def sortColors(self, nums):
         i = 0
-        for j in xrange(len(nums)):
-            if nums[j] == 0:
-                nums[i], nums[j] = nums[j], nums[i]
-                i += 1
-        for j in xrange(i, len(nums)):
-            if nums[j] == 1:
-                nums[i], nums[j] = nums[j], nums[i]
-                i += 1
+        for color in [0, 1]:
+            for j in xrange(i, len(nums)):
+                if nums[j] == color:
+                    nums[i], nums[j] = nums[j], nums[i]
+                    i += 1
         
             
             
