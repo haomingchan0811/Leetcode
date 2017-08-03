@@ -19,4 +19,15 @@ class Solution(object):
         for num in nums:
             ret ^= num
         return ret
+
+    # binary search: O(logN) time, O(1) space
+    def singleNonDuplicate(self, nums):
+        low, high = 0, len(nums) - 1
+        while low + 1 < high:
+            mid = low + (high - low) / 2
+            if nums[mid] == nums[mid ^ 1]:  # trick: parent index
+                low = mid
+            else:
+                high = mid
+        return nums[high] if (low & 1) else nums[low]
         
