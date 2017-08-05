@@ -1,2 +1,2 @@
 # Leetcode
-My Leetcode Practice in C++.
+My Leetcode Practice in C++ and Python.
