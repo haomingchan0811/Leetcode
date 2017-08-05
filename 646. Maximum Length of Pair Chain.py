@@ -18,7 +18,7 @@ class Solution(object):
         dfs(pairs, 0, (0, float('-inf')))
         return self.ret
     
-    # dynamic programming: O(NlogN) time, O(1) space
+    # greedy: O(NlogN) time, O(1) space
     def findLongestChain(self, pairs):
         if len(pairs) == 0:
             return 0
