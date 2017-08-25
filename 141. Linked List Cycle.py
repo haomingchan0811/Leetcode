@@ -13,11 +13,11 @@ class Solution(object):
         :rtype: bool
         """
         if head == None: return False
-        fast, slow = head.next, head
+        fast, slow = head, head
         while fast and fast.next:
-            if fast == slow: return True
             fast = fast.next.next
             slow = slow.next
+            if fast == slow: return True
         return False
     
     # hash set: O(N) time & space
