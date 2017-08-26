@@ -29,6 +29,20 @@ class Solution(object):
                     return True
         return False
     
+    # !! dynamic programming: dp[i] = longest length of increasing subsequece ending at i
+    # O(N2) time, O(N) space, TLE
+    def increasingTriplet(self, nums):
+        if len(nums) < 3:
+            return False
+        dp = [1 for i in range(len(nums))]
+        for end in xrange(1, len(nums)):
+            for start in xrange(end):
+                if nums[end] > nums[start]:
+                    dp[end] = max(dp[end], dp[start] + 1)
+            if dp[end] >= 3:
+                return True
+        return False
+    
     # !!! two marker: O(N) time, O(1) space
     def increasingTriplet(self, nums):
         if len(nums) < 3:
