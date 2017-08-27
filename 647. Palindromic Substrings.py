@@ -1,35 +1,50 @@
 class Solution(object):
     
-    # brute force: O(2^N)time, TLE
-    
-    # dynamic programming: O(N2) time & space
-    def longestPalindromeSubseq(self, s):
+    # brute force: O(N3) time, O(N) space, TLE
+    def countSubstrings(self, s):
         """
         :type s: str
         :rtype: int
         """
-        # check if whole string is palindrom (python might TLE for O(N2) time solution, sad)
-        i, j, isPalindrome = 0, len(s) - 1, True
-        while i < j:
-            if s[i] != s[j]:
-                isPalindrome = False
-                break
-            i, j = i + 1, j - 1
-        if isPalindrome:
-            return len(s)
-        
-        # dp[i][j]: longest length of parlindrome from i to j, inclusive
-        dp = [[0 for i in xrange(len(s))] for j in xrange(len(s))]
+        def isPalindrome(s):
+            i, j = 0, len(s) - 1
+            while i < j:
+                if s[i] != s[j]:
+                    return False
+                i, j = i + 1, j - 1
+            return True
+        cnt = 0
+        for i in xrange(len(s)):
+            for j in xrange(1, len(s) + 1 - i):
+                if isPalindrome(s[i: i + j]):
+                    cnt += 1
+        return cnt
+    
+    # dynamic programming: dp[i][j] means whether s[i:j+1] is palindrome
+    # O(N2) time, O(N2) space
+    def countSubstrings(self, s):
+        dp = [[True for i in range(len(s))] for j in range(len(s))]
+        ret = 0
         for length in xrange(1, len(s) + 1):
-            for i in xrange(len(s) - length + 1):
-                j = length + i - 1
-                if i == j:          # base 1
-                    dp[i][j] = 1       
-                elif i + 1 == j:    # base 2
-                    dp[i][j] = 2 if s[i] == s[j] else 1
-                else:
-                    dp[i][j] = max(dp[i + 1][j], dp[i][j - 1], dp[i + 1][j - 1] + (2 if s[i] == s[j] else 0))
-        return dp[0][len(s) - 1]
+            start, end = 0, length - 1
+            while end < len(s):
+                if length != 1:
+                    dp[start][end] = dp[start + 1][end - 1] and s[start] == s[end]  
+                ret += int(dp[start][end])
+                start, end = start + 1, end + 1
+        return ret
+    
+    # expand from center: O(N2) time, O(1) space
+    def countSubstrings(self, s):
+        def expand(s, left, right):
+            while left >= 0 and right < len(s) and s[left] == s[right]:
+                self.ret += 1
+                left, right = left - 1, right + 1
+        self.ret = 0
+        for i in xrange(len(s)):
+            expand(s, i, i)
+            expand(s, i, i + 1)
+        return self.ret
+                
         
-        
-    # TBD - dynamic programming: O(N2) time, O(N) space
+                
