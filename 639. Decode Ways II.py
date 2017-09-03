@@ -12,29 +12,28 @@ class Solution(object):
 #             elif idx not in self.memo:
 #                 temp = 0
 #                 if s[idx] == '*':
-#                     temp += helper(s, idx + 1) * 9
+#                     temp += (helper(s, idx + 1) * 9) % self.Mod
 #                     if idx + 1 < len(s):
 #                         if s[idx + 1] != '*':
 #                             count = len([x for x in range(1, 10) if 10 <= 10 * x + int(s[idx + 1]) <= 26])
-#                             temp += helper(s, idx + 2) * count
+#                             temp += (helper(s, idx + 2) * count) % self.Mod
 #                         else:
-#                             temp += helper(s, idx + 2) * 15     # valid number for "**"
+#                             temp += (helper(s, idx + 2) * 15) % self.Mod         # valid number for "**"
 #                 elif s[idx] != '0':
-#                     temp += helper(s, idx + 1)
+#                     temp += (helper(s, idx + 1)) % self.Mod
 #                     if idx + 1 < len(s):
 #                         if s[idx + 1] != '*' and 0 <= int(s[idx: idx + 2]) <= 26:
-#                             temp += helper(s, idx + 2)
+#                             temp += (helper(s, idx + 2)) % self.Mod
 #                         elif s[idx + 1] == '*':
 #                             count = len([x for x in range(1, 10) if 10 <= x + int(s[idx]) * 10 <= 26])
-#                             temp += helper(s, idx + 2) * count
-#                 self.memo[idx] = temp
+#                             temp += (helper(s, idx + 2) * count) % self.Mod
+#                 self.memo[idx] = temp % self.Mod
 #             return self.memo[idx]
         
 #         if len(s) == 0:
 #             return 0
-#         self.memo = {}
+#         self.Mod, self.memo = 10 ** 9 + 7, {}
 #         return helper(s, 0)
-
 
     # dynamic programming: O(N) time, O(1) space
     def numDecodings(self, s):
