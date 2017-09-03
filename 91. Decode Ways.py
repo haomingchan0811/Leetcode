@@ -1,26 +1,26 @@
 class Solution(object):
     
-#     # backtracking: O(2^N) time & space, TLE
-#     def numDecodings(self, s):
-#         """
-#         :type s: str
-#         :rtype: int
-#         """
-#         def helper(s, start):
-#             if start == len(s):
-#                 self.ret += 1
-#                 return 
-#             if s[start] != '0':    # bug: '0' has zero decode ways
-#                 helper(s, start + 1)
-#                 if start + 1 < len(s) and int(s[start:start + 2]) <= 26:
-#                     helper(s, start + 2)
-                    
-#         if len(s) == 0:   
-#             return 0
-#         self.ret = 0
-#         helper(s, 0)
-#         return self.ret
-
+    # backtracking: O(2^N) time, O(1) space, TLE
+    def numDecodings(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        def helper(s, idx):
+            if idx == len(s):
+                self.ret += 1
+                return 
+            if s[idx] != '0':       # bug:  '10' is valid
+                helper(s, idx + 1)
+                if idx + 1 < len(s) and int(s[idx: idx + 2]) <= 26:
+                    helper(s, idx + 2)
+            
+        # if '0' in s or len(s) == 0:   # bug:  '10' is valid
+        if len(s) == 0:   
+            return 0
+        self.ret = 0
+        helper(s, 0)
+        return self.ret
 
     # backtracking with memorization: O(N2) time, O(N) space
     def numDecodings(self, s):
@@ -42,19 +42,16 @@ class Solution(object):
         self.memo = {}
         return helper(s, 0)
 
-
     # dynamic programming: O(N) time, O(1) space
     def numDecodings(self, s):
-        if len(s) == 0 or s[0] == '0':   
+        if len(s) == 0 or s[0] == '0':
             return 0
+        prev2, prev1 = 1, 1
+        for i in xrange(1, len(s)):
+            curr = 0 if s[i] == '0' else prev1
+            if 10 <= int(s[i - 1: i + 1]) <= 26:
+                curr += prev2
+            prev2, prev1 = prev1, curr
+        return prev1
+                
         
-        snd2prev = 1
-        prev = 0 if s[0] == '0' else 1
-        for i in xrange(2, len(s) + 1):  # length
-            temp = 0
-            if 10 <= int(s[i - 2:i]) <= 26:
-                temp += snd2prev
-            if s[i - 1] != '0':
-                temp += prev
-            snd2prev, prev = prev, temp
-        return prev
