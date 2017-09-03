@@ -21,6 +21,28 @@ class Solution(object):
 #         helper(s, 0)
 #         return self.ret
 
+
+    # backtracking with memorization: O(N2) time, O(N) space
+    def numDecodings(self, s):
+        def helper(s, idx):
+            if idx == len(s):
+                return 1
+            elif idx not in self.memo:
+                if s[idx] == '0':       
+                    self.memo[idx] = 0
+                else:
+                    j, k = helper(s, idx + 1), 0
+                    if idx + 1 < len(s) and int(s[idx: idx + 2]) <= 26:
+                        k = helper(s, idx + 2)
+                    self.memo[idx] = j + k
+            return self.memo[idx]
+            
+        if len(s) == 0:   
+            return 0
+        self.memo = {}
+        return helper(s, 0)
+
+
     # dynamic programming: O(N) time, O(1) space
     def numDecodings(self, s):
         if len(s) == 0 or s[0] == '0':   
