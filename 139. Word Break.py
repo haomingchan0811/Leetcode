@@ -20,14 +20,16 @@ class Solution(object):
         def helper(s, start, wordDict):
             if start == len(s):
                 return True
-            if self.memo.get(start, None) is not None:
+            if start in self.memo:
                 return self.memo[start]
+            
             for end in xrange(start, len(s)):
                 if s[start:end + 1] in wordDict and helper(s, end + 1, wordDict):
                     self.memo[start] = True
                     return True
             self.memo[start] = False
             return False
+        
         self.memo = {}
         return helper(s, 0, wordDict)
     
