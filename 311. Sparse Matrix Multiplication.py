@@ -14,6 +14,18 @@ class Solution(object):
                 for i in xrange(n):
                     ret[row][col] += A[row][i] * B[i][col]
         return ret
+
+    # better brute force: O(mnk) time, O(1) space
+    def multiply(self, A, B):
+        maps = {}
+        m, n, k = len(A), len(A[0]), len(B[0])
+        ret = [[0 for i in xrange(k)] for _ in xrange(m)]
+        for i in xrange(m):
+            for j in xrange(n):
+                if A[i][j] != 0:
+                    for p in xrange(k):
+                        ret[i][p] += A[i][j] * B[j][p]
+        return ret
     
     # hash table: O(mn + nk) time, O(mn) space
     def multiply(self, A, B):

@@ -1,6 +1,6 @@
 class Solution(object):
     
-    # # hash table: O(N3) time, O(1) space, TLE
+    # # brute force: O(N3) time, O(1) space, TLE
     # def maxSubArrayLen(self, nums, k):
     #     """
     #     :type nums: List[int]
