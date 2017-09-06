@@ -13,19 +13,19 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[str]
         """
-        def dfs(root, curr, ret):
-            string = '%s%d->' % (curr, root.val)
+        def dfs(root, curr):
             if not root.left and not root.right:
-                ret.append(string[:-2])
+                self.ret.append(curr + str(root.val))
+                return 
             if root.left:
-                dfs(root.left, string, ret)
+                dfs(root.left, curr + str(root.val) + '->')
             if root.right:
-                dfs(root.right, string, ret)
-        ret = []
-        if not root:
-            return ret
-        dfs(root, "", ret)
-        return ret
+                dfs(root.right, curr + str(root.val) + '->')
+        self.ret = []
+        if root is None:
+            return self.ret
+        dfs(root, "")
+        return self.ret
     
     # bfs queue: O(N) time, O(N) space
     def binaryTreePaths(self, root):
