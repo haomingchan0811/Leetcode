@@ -29,20 +29,19 @@ class Solution(object):
     
     # heap, more elegant: O(sum(len(N)) * logk) time, O(k) space
     def mergeKLists(self, lists):
-        head = ListNode(-1)
-        dummy = head
-        heap = []   # heap
-        for node in lists:
-            if node is not None:
-                heapq.heappush(heap, (node.val, node))
-                
-        while heap:
-            val, node = heapq.heappop(heap)
+        if len(lists) == 0:
+            return None
+        dummy = head = ListNode(None)
+        h = []
+        for i in xrange(len(lists)):
+            if lists[i] is not None:  # bug: check null here
+                heapq.heappush(h, (lists[i].val, lists[i]))
+        while h:
+            _, node = heapq.heappop(h)
             dummy.next = node
-            node = node.next
             dummy = dummy.next
-            if node is not None:
-                heapq.heappush(heap, (node.val, node))
+            if node.next:
+                heapq.heappush(h, (node.next.val, node.next))
         return head.next
         
         
