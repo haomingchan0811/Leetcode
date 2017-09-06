@@ -13,8 +13,7 @@ class Solution(object):
         low, high = 1, n
         while low + 1 < high:
             mid = low + (high - low) / 2
-            isBad = isBadVersion(mid)
-            if isBad:
+            if isBadVersion(mid):
                 high = mid
             else:
                 low = mid
