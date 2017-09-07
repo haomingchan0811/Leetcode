@@ -6,42 +6,41 @@
 #         self.right = None
 
 class Codec:
-    
+
     def serialize(self, root):
         """Encodes a tree to a single string.
+        
         :type root: TreeNode
         :rtype: str
         """
-        queue = [root]
-        ret = ''
+        ret, queue = [], [root]
         for node in queue:
             if node is None:
-                ret += ('' if ret == '' else ',') + 'null'
+                ret.append('null')
             else:
-                ret += ('' if ret == '' else ',') + str(node.val)
+                ret.append(str(node.val))
                 queue += [node.left, node.right]
-        return ret
-        
-    
+        return ','.join(ret)
+
     def deserialize(self, data):
         """Decodes your encoded data to tree.
+        
         :type data: str
         :rtype: TreeNode
         """
-        data = data.split(',')
-        if data == [] or data[0] == 'null':
+        vals = data.split(',')
+        if len(vals) == 0 or vals[0] == 'null':
             return None
-        root = TreeNode(int(data[0]))
-        dummy = root
+        dummy = root = TreeNode(int(vals[0]))
         queue, i = [root], 1
         for node in queue:
             if node is not None:
-                node.left = TreeNode(int(data[i])) if data[i] != 'null' else None
-                node.right = TreeNode(int(data[i + 1])) if data[i + 1] != 'null' else None
-                queue += [node.left, node.right]
+                node.left = TreeNode(int(vals[i])) if vals[i] != 'null' else None
+                node.right = TreeNode(int(vals[i + 1])) if vals[i + 1] != 'null' else None
                 i += 2
+                queue += [node.left, node.right]
         return dummy
-
+        
 
 # Your Codec object will be instantiated and called as such:
 # codec = Codec()
