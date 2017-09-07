@@ -81,6 +81,39 @@ class RandomizedSet(object):
             n = random.randint(0, len(self.nums) - 1)
             return self.nums[n]
 
+
+    # better 
+    def __init__(self):
+        self.indices = {}
+        self.nums = []
+        self.capacity = 0
+
+    def insert(self, val):
+        if val in self.indices:
+            return False
+        if self.capacity == len(self.nums):
+            self.nums.append(val)
+        else:
+            self.nums[self.capacity] = val
+        self.indices[val] = self.capacity
+        self.capacity += 1
+        return True
+        
+
+    def remove(self, val):
+        if val not in self.indices:
+            return False
+        currIdx = self.indices[val]
+        last, lastIdx = self.nums[self.capacity - 1], self.capacity - 1
+        self.nums[currIdx] = last
+        self.indices[last] = currIdx
+        del self.indices[val]
+        self.capacity -= 1
+        return True
+        
+    def getRandom(self):
+        return self.nums[random.randint(0, self.capacity - 1)]
+
 # Your RandomizedSet object will be instantiated and called as such:
 # obj = RandomizedSet()
 # param_1 = obj.insert(val)
