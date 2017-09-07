@@ -6,14 +6,16 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        def dfs(nums, curr, ret):
-            ret.append(curr)
-            for j in range(len(nums)):
-                dfs(nums[j + 1:], curr + [nums[j]], ret)
-        
-        ret = []
-        dfs(nums, [], ret)
-        return ret
+        def helper(nums, i, curr):
+            self.ret.append(curr)
+            if i == len(nums):
+                return 
+            for j in xrange(i, len(nums)):
+                helper(nums, j + 1, curr + [nums[j]])
+            
+        self.ret = []
+        helper(nums, 0, [])
+        return self.ret
     
     # ! Iteratively: O(2^N) time, O(N) space
     def subsets(self, nums):

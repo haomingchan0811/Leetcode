@@ -24,11 +24,9 @@ class Solution(object):
 
     # Recursively: O(N) time, O(1) space
     def reverseList(self, head):
-        return self._reverse(head)
-        
-    def _reverse(self, head):
-        if not head or not head.next: return head
-        node = self._reverse(head.next)
+        if not head or not head.next:
+            return head
+        node = self.reverseList(head.next)
         head.next.next = head
         head.next = None
         return node
