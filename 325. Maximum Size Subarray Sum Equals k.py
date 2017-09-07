@@ -29,13 +29,12 @@ class Solution(object):
     
     # !! hash table: O(N) time, O(N2) space, 
     def maxSubArrayLen(self, nums, k):
-        ret = 0
-        for i in xrange(1, len(nums)):   # nums[i] becomes sum of nums[0~i]
-            nums[i] += nums[i - 1]
-        length = {0: 0}
-        for i in xrange(len(nums)):
-            if nums[i] not in length:
-                length[nums[i]] = i + 1
-            if (nums[i] - k) in length:
-                ret = max(i - length[nums[i] - k] + 1, ret)
+        maps = {0: -1}
+        sums, ret = 0, 0
+        for i, num in enumerate(nums):
+            sums += num
+            if sums - k in maps:
+                ret = max(ret, i - maps[sums - k])
+            if sums not in maps:
+                maps[sums] = i
         return ret
