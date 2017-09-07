@@ -6,7 +6,6 @@
 #         self.right = None
 
 class Solution(object):
-    
     # dfs and hashtable, save the path: O(N) time & space
     def lowestCommonAncestor(self, root, p, q):
         """
@@ -32,13 +31,22 @@ class Solution(object):
             if node in path_p:
                 return node
         return None
-
+    
+    # dfs, if subtree t has both p and q, t is LCA: O(N) time, O(N) space
+    def lowestCommonAncestor(self, root, p, q):
+        if root in [p, q, None]:
+            return root
+        l = self.lowestCommonAncestor(root.left, p, q)
+        r = self.lowestCommonAncestor(root.right, p, q)
+        if l and r:
+            return root
+        return l if l else r
+    
     # bst dfs: O(N) time, O(1) space
     def lowestCommonAncestor(self, root, p, q):
-        while (p.val - root.val) * (q.val - root.val) > 0:
-            if p.val - root.val > 0:
-                root = root.right
-            else:
-                root = root.left
-        return root
+        if (root.val - p.val) * (root.val - q.val) <= 0:
+            return root
+        if p.val < root.val:
+            return self.lowestCommonAncestor(root.left, p, q)
+        return self.lowestCommonAncestor(root.right, p, q)
         
