@@ -13,17 +13,18 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[List[int]]
         """
-        if root == None: return []
-        queue, ret, i = [root], [], 0
-        while i < len(queue):
-            levelSize, level = len(queue)-i, []
+        if root is None:
+            return []
+        queue, ret = deque([root]), []
+        while queue:
+            levelSize = len(queue)
+            temp = []
             while levelSize:
-                root, levelSize = queue[i], levelSize-1
-                level.append(root.val)
-                queue += filter(None, [root.left, root.right])
-                i += 1
-            ret.append(level)
-            i += levelSize
+                node = queue.popleft()
+                levelSize -= 1
+                temp.append(node.val)
+                queue += filter(None, [node.left, node.right])
+            ret.append(temp)
         return ret
     
     # Pythonic BFS: O(N) time & space

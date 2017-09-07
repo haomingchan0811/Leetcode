@@ -47,5 +47,20 @@ class Solution(object):
             i += sameCnt
             
         return ret
+
+    # recursive without set: O(2^N) time, O(N) space
+    def subsetsWithDup(self, nums):
+        def helper(nums, i, curr):
+            ret.append(curr)
+            if i == len(nums):
+                return 
+            for j in xrange(i, len(nums)):
+                if i == j or nums[j] != nums[j - 1]:
+                    helper(nums, j + 1, curr + [nums[j]])
+        
+        ret = []
+        nums.sort()
+        helper(nums, 0, [])
+        return ret
         
         
