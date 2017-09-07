@@ -34,7 +34,7 @@ class Solution(object):
 #                         self.visited[(i, j)] = False
 #         return False
 
-    # more elegant, dfs, backtracking: O(4^N) time, O(1) space
+    # more elegant, dfs, backtracking: O(4^N) time, O(mn) space
     def exist(self, board, word):
         
         def helper(board, word, idx, i, j):
@@ -50,6 +50,27 @@ class Solution(object):
         
         self.m, self.n = len(board), len(board[0])
         self.visited = {(i, j): False for i in range(self.m) for j in range(self.n)}
+        for i in xrange(self.m):
+            for j in xrange(self.n):
+                if helper(board, word, 0, i, j):
+                    return True
+        return False
+
+    # more elegant, dfs, backtracking: O(4^N) time, O(1) space
+    def exist(self, board, word):
+        
+        def helper(board, word, idx, i, j):
+            if idx == len(word):
+                return True
+            if i < 0 or i == self.m or j < 0 or j == self.n or board[i][j] != word[idx]:
+                return False
+            board[i][j] = '-1'
+            flag = helper(board, word, idx + 1, i + 1, j) or helper(board, word, idx + 1, i - 1, j) \
+                or helper(board, word, idx + 1, i, j + 1) or helper(board, word, idx + 1, i, j - 1)
+            board[i][j] = word[idx]
+            return flag
+        
+        self.m, self.n = len(board), len(board[0])
         for i in xrange(self.m):
             for j in xrange(self.n):
                 if helper(board, word, 0, i, j):

@@ -11,5 +11,5 @@ class Solution(object):
             root = tuple(sorted(str))
             d[root] = d.get(root, []) + [str]
             
-        return [x[1] for x in d.items()]    
+        return d.values()    
         

@@ -9,9 +9,7 @@ class Solution(object):
         stack = []
         path = path.split('/')
         for elem in path:
-            if elem in ['', '.'] or (elem == '..' and len(stack) == 0):
-                continue
-            else:
+            if not (elem in ['', '.'] or (elem == '..' and len(stack) == 0)):
                 if elem == '..':
                     stack.pop()
                 else:
