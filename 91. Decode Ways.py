@@ -31,10 +31,9 @@ class Solution(object):
                 if s[idx] == '0':       
                     self.memo[idx] = 0
                 else:
-                    j, k = helper(s, idx + 1), 0
+                    self.memo[idx] = helper(s, idx + 1)
                     if idx + 1 < len(s) and int(s[idx: idx + 2]) <= 26:
-                        k = helper(s, idx + 2)
-                    self.memo[idx] = j + k
+                        self.memo[idx] += helper(s, idx + 2)
             return self.memo[idx]
             
         if len(s) == 0:   
