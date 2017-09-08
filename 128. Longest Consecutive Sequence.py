@@ -40,8 +40,17 @@ class Solution(object):
     #         prev = curr
     #     return max(ret, cnt)
     
-    # !! UNION FIND: O(N) time, O(N) space
+        # hashmap: O(N) time
     def longestConsecutive(self, nums):
+        length, ret = {}, 0
+        for num in nums:
+            if num not in length:
+                left = length.get(num - 1, 0)
+                right = length.get(num + 1, 0)
+                total = left + right + 1
+                length[num] = length[num - left] = length[num + right] = total
+                ret = max(ret, total)
+        return ret
        
         
         
