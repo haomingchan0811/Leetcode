@@ -28,7 +28,7 @@ class Solution(object):
             adj[t] += [s]
         
         for i in xrange(numCourses):
-            if not self.gloVisited[i] and findCycle(i, adj):  # impossible to arrange due to cycle
+            if findCycle(i, adj):  # impossible to arrange due to cycle
                 return []
 
         return self.ret
